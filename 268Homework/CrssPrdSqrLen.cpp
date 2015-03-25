@@ -1,5 +1,5 @@
-#include<iostream>
-using namespace std;
+//#include<iostream>
+//using namespace std;
 
 
 int SqrLenCrossProd(int x1, int y1, int z1, // Input vector 1
@@ -44,9 +44,9 @@ int SqrLenCrossProd(int x1, int y1, int z1, // Input vector 1
     return answer;
 }
 
-void main()
-{
-    cout << SqrLenCrossProd(1, 2, 3, 1, 1, 1) << endl;
-    cout << SqrLenCrossProd(1, 0, 0, 0, 1, 0) << endl;
-    cout << SqrLenCrossProd(10, 10, 10, -10, 50, -15) << endl;
-}
+//void main()
+//{
+//    cout << SqrLenCrossProd(1, 2, 3, 1, 1, 1) << endl;
+//    cout << SqrLenCrossProd(1, 0, 0, 0, 1, 0) << endl;
+//    cout << SqrLenCrossProd(10, 10, 10, -10, 50, -15) << endl;
+//}
