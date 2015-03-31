@@ -1,6 +1,7 @@
-//#include<iostream>
-//using namespace std;
+#include<iostream>
+using namespace std;
 
+extern "C" int LCM(int, int);
 
 int SqrLenCrossProd(int x1, int y1, int z1, // Input vector 1
                     int x2, int y2, int z2) // Input vector 2
@@ -44,9 +45,18 @@ int SqrLenCrossProd(int x1, int y1, int z1, // Input vector 1
     return answer;
 }
 
-//void main()
-//{
-//    cout << SqrLenCrossProd(1, 2, 3, 1, 1, 1) << endl;
-//    cout << SqrLenCrossProd(1, 0, 0, 0, 1, 0) << endl;
-//    cout << SqrLenCrossProd(10, 10, 10, -10, 50, -15) << endl;
-//}
+void main()
+{
+	int a, b;
+
+	cout << "Enter two integers: ";
+	cin >> a >> b;
+	while (a != 0 && b != 0)
+	{
+		int answer = LCM(a, b);
+		cout << "LCM (" << a << "," << b << ") = " << answer << endl;
+
+		cout << "Enter two integers: ";
+		cin >> a >> b;
+	}
+}

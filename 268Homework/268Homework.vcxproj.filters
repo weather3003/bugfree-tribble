@@ -15,8 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CrssPrdSqrLen.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="lcm.asm">
+      <Filter>Source Files</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>
