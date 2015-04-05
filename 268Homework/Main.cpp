@@ -3,6 +3,7 @@ using namespace std;
 
 extern "C" int LCM(int, int);
 
+bool properFactors(int number, int * factorList);
 int SqrLenCrossProd(int x1, int y1, int z1, // Input vector 1
                     int x2, int y2, int z2) // Input vector 2
 {
@@ -47,16 +48,57 @@ int SqrLenCrossProd(int x1, int y1, int z1, // Input vector 1
 
 void main()
 {
-	int a, b;
+	int a; int factorList[1000];
 
-	cout << "Enter two integers: ";
-	cin >> a >> b;
-	while (a != 0 && b != 0)
+	cout << "Enter one integer: ";
+	cin >> a;
+	while (a > 0)
 	{
-		int answer = LCM(a, b);
-		cout << "LCM (" << a << "," << b << ") = " << answer << endl;
-
-		cout << "Enter two integers: ";
-		cin >> a >> b;
+		properFactors(a, factorList);
+		cout << "Enter one integer: ";
+		cin >> a;
 	}
 }
+
+//Returns true
+bool properFactors(int number, int * factorList)
+{
+	factorList[0] = 1; int count = 1;
+	for (int i = 2; i * i <= number; i++)
+	{
+		if (number % i == 0)
+		{
+			factorList[count] = i;
+			count++;
+		}
+	}
+
+	
+	for (int index = count - 1; index > 0; index--)
+	{
+		factorList[count] = number / factorList[index];
+		count++;
+	}
+
+
+
+
+	int i = 0;
+	cout << "Factors: " << factorList[i];
+	for (i = 1; i < count; i++)
+	{
+		cout << ", " << factorList[i];
+	}
+	cout << endl;
+
+
+
+
+
+	return true;
+}
+
+
+
+
+
