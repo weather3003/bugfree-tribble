@@ -1,4 +1,5 @@
 #include<iostream>
+#include <time.h>
 using namespace std;
 
 extern "C" int LCM(int, int);
@@ -46,22 +47,50 @@ int SqrLenCrossProd(int x1, int y1, int z1, // Input vector 1
     return answer;
 }
 
-void main()
-{
-	int a, b; int factorList[1000];
-	b = 0;
+//void main()
+//{
+//	int a, b; int factorList[1000];
+//	b = 0;
+//
+//	cout << "Enter one integer: ";
+//	cin >> a;
+//	while (a > 0)
+//	{
+//		properFactors(a, factorList, b);
+//		cout << "Enter one integer: ";
+//		cin >> a;
+//	}
+//}
 
-	cout << "Enter one integer: ";
-	cin >> a;
-	while (a > 0)
-	{
-		properFactors(a, factorList, b);
-		cout << "Enter one integer: ";
-		cin >> a;
+#define MAXIMUM 1000000
+int Factors[MAXIMUM];
+int main() {
+	int q;
+	int numFactors;
+	int PairCount = 0;
+	clock_t StartClock = clock();
+	for (int p = 1; p <= MAXIMUM; p++) {
+		q = properFactors(p, Factors, numFactors);
+		if (q > p) {
+			if (properFactors(q, Factors, numFactors) == p) {
+				cout << "Amicable Pair : " << p << ", " << q;
+				cout << "(" << q << " has " << numFactors << " factors : ";
+				cout << Factors[0];
+				for (int i = 1; i<numFactors; i++)
+					cout << ", " << Factors[i];
+				cout << ")" << endl;
+				PairCount++;
+			}
+		}
 	}
+	double TotalTime = (double)(clock() - StartClock) / CLOCKS_PER_SEC;
+	cout << "Number of amicable pairs found = " << PairCount << endl;
+	cout << "Time = " << TotalTime << " seconds" << endl;
 }
 
-//Returns true
+
+
+
 int properFactors(int number, int * factorList, int& numberOfFactors)
 {
 	factorList[0] = 1; int count = 1; int sum = 1; int factor2;
