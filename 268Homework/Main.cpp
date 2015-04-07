@@ -3,7 +3,7 @@ using namespace std;
 
 extern "C" int LCM(int, int);
 
-bool properFactors(int number, int * factorList);
+int properFactors(int number, int * factorList, int& numberOfFactors);
 int SqrLenCrossProd(int x1, int y1, int z1, // Input vector 1
                     int x2, int y2, int z2) // Input vector 2
 {
@@ -48,54 +48,44 @@ int SqrLenCrossProd(int x1, int y1, int z1, // Input vector 1
 
 void main()
 {
-	int a; int factorList[1000];
+	int a, b; int factorList[1000];
+	b = 0;
 
 	cout << "Enter one integer: ";
 	cin >> a;
 	while (a > 0)
 	{
-		properFactors(a, factorList);
+		properFactors(a, factorList, b);
 		cout << "Enter one integer: ";
 		cin >> a;
 	}
 }
 
 //Returns true
-bool properFactors(int number, int * factorList)
+int properFactors(int number, int * factorList, int& numberOfFactors)
 {
-	factorList[0] = 1; int count = 1;
-	for (int i = 2; i * i <= number; i++)
+	factorList[0] = 1; int count = 1; int sum = 1; int factor2;
+	for (int k = 2; k * k <= number; k++)
 	{
-		if (number % i == 0)
+		if (number % k == 0)
 		{
-			factorList[count] = i;
+			factorList[count] = k;
+			sum += k;
 			count++;
+
+			factor2 = number / k;
+			if (factor2 != k)
+			{
+				factorList[count] = factor2;
+				sum += factor2;
+				count++;
+			}
 		}
 	}
 
-	
-	for (int index = count - 1; index > 0; index--)
-	{
-		factorList[count] = number / factorList[index];
-		count++;
-	}
+	numberOfFactors = count;
 
-
-
-
-	int i = 0;
-	cout << "Factors: " << factorList[i];
-	for (i = 1; i < count; i++)
-	{
-		cout << ", " << factorList[i];
-	}
-	cout << endl;
-
-
-
-
-
-	return true;
+	return sum;
 }
 
 
